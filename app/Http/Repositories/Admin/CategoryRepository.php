@@ -41,13 +41,12 @@ class CategoryRepository implements CategoryInterface{
     public function edit($category)
     {
 
-        $category = $this->categoryModel::where('name', $category)->first();
         return view("Admin.Pages.Category.update",compact('category'));
 
     }
     public function update($category, $request)
     {
-        $category = $this->categoryModel::where('name', $category)->first();
+        
         if($request->image){
             $categoryImage=$this->uploadImage($request->image,$this->categoryModel::PATH,$category->getRawOriginal('image'));
             $this->removeImage($category->image);

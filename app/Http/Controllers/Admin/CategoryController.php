@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Interfaces\Admin\CategoryInterface;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -28,11 +29,11 @@ class CategoryController extends Controller
     {
         return $this->categoryInterface->store($request);
     }
-    public function edit($category)
+    public function edit(Category $category)
     {
         return $this->categoryInterface->edit($category);
     }
-    public function update($category, UpdateCategoryRequest $request)
+    public function update(Category $category, UpdateCategoryRequest $request)
     {
         return $this->categoryInterface->update($category, $request);
     }
