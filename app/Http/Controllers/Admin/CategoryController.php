@@ -37,7 +37,7 @@ class CategoryController extends Controller
     {
         return $this->categoryInterface->update($category, $request);
     }
-    public function delete($category)
+    public function delete(Category $category)
     {
         return $this->categoryInterface->delete($category);
     }
