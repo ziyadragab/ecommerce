@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\Interfaces\Admin\AuthInterface as AdminAuthInterface;
 use App\Http\Interfaces\Admin\CategoryInterface;
 use App\Http\Interfaces\Admin\HomeInterface as AdminHomeInterface;
+use App\Http\Interfaces\Admin\ProductInterface;
 use App\Http\Interfaces\EndUser\AuthInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Http\Interfaces\EndUser\HomeInterface;
@@ -12,6 +13,7 @@ use App\Http\Interfaces\EndUser\RegisterInterface;
 use App\Http\Repositories\Admin\AuthRepository as AdminAuthRepository;
 use App\Http\Repositories\Admin\CategoryRepository;
 use App\Http\Repositories\Admin\HomeRepository as AdminHomeRepository;
+use App\Http\Repositories\Admin\ProductRepository;
 use App\Http\Repositories\EndUser\AuthRepository;
 use App\Http\Repositories\EndUser\HomeRepository;
 use App\Http\Repositories\EndUser\RegisterRepository;
@@ -56,6 +58,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CategoryInterface::class,
             CategoryRepository::class
+
+        );
+        $this->app->bind(
+            ProductInterface::class,
+            ProductRepository::class
 
         );
     }

@@ -60,7 +60,6 @@ Products
                                     <thead>
                                         <tr>
                                             <th scope="col">Produc Name</th>
-                                            <th scope="col">Product Slug</th>
                                             <th scope="col">Product price</th>
                                             <th scope="col">Category Name</th>
                                             <th scope="col">Product Image</th>
@@ -72,16 +71,12 @@ Products
 
                                         @foreach ($products as $product)
 
-
                                         <tr>
                                             <td>{{ $product->name }}</td>
-                                            <td>{{ $product->slug }}</td>
                                             <td>{{ $product->price }}</td>
-
                                             <td>{{ $product->category->name }}</td>
-                                            <td><img src=" {{ asset($product->image) }}" width="100px" height="100px">
+                                            <td><img src="{{ asset($product->image)}}" width="100px" height="100px">
                                             </td>
-
                                             <td class="text-center">
                                                 <a class="btn btn-primary"
                                                     href="{{ route('admin.product.edit', $product) }}">Editt</a></span>
@@ -98,7 +93,7 @@ Products
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $products->onEachSide(5)->links() }}
+
                             </div>
                         </div>
                     </div>

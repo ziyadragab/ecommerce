@@ -65,7 +65,7 @@ Add Product
 
                             <div class="form-group mb-4">
 
-                                <input type="text" class="form-control" name="price" value="{{ old('name') }}"
+                                <input type="number" class="form-control" name="price" value="{{ old('price') }}"
                                     id="exampleFormControlInput2" placeholder="Product price">
                                 @error('price')
                                 <p class="text-danger">{{$message}}</p>
@@ -76,7 +76,7 @@ Add Product
                                 <label for="">Product Description</label>
                                 <textarea name="description" id=""
                                     class="form-control my-2 @error('description') is-invalid @enderror"
-                                    placeholder="Product Description" cols="30" rows="10"></textarea>
+                                    placeholder="Product Description" cols="30" rows="10">{{ old('description') }}</textarea>
                                 @error('description')
                                 <p class="text-danger">{{$message}}</p>
                                 @enderror
