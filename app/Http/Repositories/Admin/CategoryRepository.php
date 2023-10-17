@@ -46,7 +46,7 @@ class CategoryRepository implements CategoryInterface{
     }
     public function update($category, $request)
     {
-        
+
         if($request->image){
             $categoryImage=$this->uploadImage($request->image,$this->categoryModel::PATH,$category->getRawOriginal('image'));
             $this->removeImage($category->image);
@@ -61,7 +61,6 @@ class CategoryRepository implements CategoryInterface{
     }
     public function delete($category)
     {
-        $category = $this->categoryModel::where('name', $category)->first();
         $this->removeImage($category->image);
         $category->delete();
         toast('Category Deleted Successfully','success');

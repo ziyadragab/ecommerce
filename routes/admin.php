@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,5 +65,6 @@ Route::group(
                 Route::delete('{product}', 'delete')->name('delete');
             }
         );
+
     }
 );

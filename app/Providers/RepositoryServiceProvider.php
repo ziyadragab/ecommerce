@@ -65,6 +65,7 @@ class RepositoryServiceProvider extends ServiceProvider
             ProductRepository::class
 
         );
+
     }
 
     /**

@@ -9,7 +9,7 @@ Products
     <div class="container">
 
         <div class="container">
-             <br>
+            <br>
             <a class="btn btn-primary" href="{{route('admin.product.create')}}"> Create New Product </a>
             <!--  BEGIN BREADCRUMBS  -->
             <div class="secondary-nav">
@@ -43,47 +43,61 @@ Products
                 </div>
             </div>
             <div class="row layout-top-spacing">
+                <!-- Add search input field -->
+                <div class="col-lg-4 col-12 layout-spacing">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search by name">
+                </div>
+            </div>
+            <div class="row layout-top-spacing">
 
                 <div id="tableSimple" class="col-lg-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <h4>All_Products</h4>
+                                    <h4>All Products</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="widget-content widget-content-area">
-
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Produc Name</th>
-                                            <th scope="col">Product price</th>
+                                            <th scope="col">Product Name</th>
+                                            <th scope="col">Product Price</th>
                                             <th scope="col">Category Name</th>
                                             <th scope="col">Product Image</th>
+                                            <th scope="col">Sizes</th>
+                                            <th scope="col">Colors</th>
                                             <th scope="col">Update</th>
                                             <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         @foreach ($products as $product)
-
-                                        <tr>
+                                        <tr class="product-row">
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->category->name }}</td>
-                                            <td><img src="{{ asset($product->image)}}" width="100px" height="100px">
-                                            </td>
-                                            <td class="text-center">
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('admin.product.edit', $product) }}">Editt</a></span>
+                                            <td>
+                                                <img src="{{ asset($product->image) }}" width="100px" height="100px">
                                             </td>
                                             <td>
-                                                <form id="delete" action="{{ route('admin.product.delete', $product) }}"
-                                                    method="post">
+                                                @foreach ($product->sizes as $size)
+                                                    {{ $size->name }},
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach ($product->colors as $color)
+                                                    {{ $color->name }},
+                                                @endforeach
+                                            </td>
+                                            <td class="text-center">
+                                                <a class="btn btn-primary" href="{{ route('admin.product.edit', $product) }}">Edit</a>
+                                            </td>
+                                            <td>
+                                                <form id="delete" action="{{ route('admin.product.delete', $product) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button class="btn btn-danger">Delete</button>
@@ -93,7 +107,6 @@ Products
                                         @endforeach
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -102,4 +115,5 @@ Products
             </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection
