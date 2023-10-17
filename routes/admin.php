@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\Admin\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,34 @@ Route::group(
                 Route::get('edit/{product}', 'edit')->name('edit');
                 Route::put('update/{product}', 'update')->name('update');
                 Route::delete('{product}', 'delete')->name('delete');
+            }
+        );
+        Route::group(
+            [
+                'as' => 'setting.',
+                'prefix' => 'settings',
+                'controller' => SettingController::class
+            ],
+            function () {
+                Route::get('', 'index')->name('index');
+                Route::get('edit/{setting}', 'edit')->name('edit');
+                Route::put('update/{setting}', 'update')->name('update');
+
+            }
+        );
+        Route::group(
+            [
+                'as' => 'ad.',
+                'prefix' => 'ads',
+                'controller' => AdController::class
+            ],
+            function () {
+                Route::get('', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('create', 'store')->name('store');
+                Route::get('edit/{ad}', 'edit')->name('edit');
+                Route::put('update/{ad}', 'update')->name('update');
+                Route::delete('{ad}', 'delete')->name('delete');
             }
         );
 

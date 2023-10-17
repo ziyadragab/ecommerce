@@ -21,22 +21,20 @@
                         </a>
                         <div class="d-flex breadcrumb-content">
                             <div class="page-header">
-
                                 <div class="page-title">
                                 </div>
-
                                 <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#">Form</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Basic</li>
                                     </ol>
                                 </nav>
-
                             </div>
                         </div>
                     </header>
                 </div>
             </div>
+
             <div class="col-lg-12 col-12 layout-spacing">
                 <div class="statbox widget box box-shadow">
                     <div class="widget-header">
@@ -47,23 +45,25 @@
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-                        <form method="post" action="{{route('admin.ad.store')}}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('admin.ad.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-4">
-
-
                                 <input type="text" class="form-control my-2" name="name" value="{{ old('name') }}"
                                     id="exampleFormControlInput2" placeholder="Ad Name">
                                 @error('name')
-                                <p class="text-danger">{{$message}}</p>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
 
+                                <textarea class="form-control my-2" name="description" id="" cols="30" rows="10"
+                                    placeholder="Ad Description"></textarea>
+                                @error('description')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
 
-                                <input type="file" class="form-control" name="image">
+                                <input type="file" class="form-control my-2" name="image">
                                 @error('image')
-                                <p class="text-danger">{{$message}}</p>
+                                <p class="text-danger">{{ $message }}</p>
                                 @enderror
-
                             </div>
                             <button class="btn btn-outline-success">Add</button>
                         </form>
@@ -73,4 +73,5 @@
 
         </div>
     </div>
-    @endsection
+</div>
+@endsection
