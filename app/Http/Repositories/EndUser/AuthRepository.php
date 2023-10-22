@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthRepository implements AuthInterface
 {
-    use AuthTrait;
+
     public function loginForm()
     {
         return view("EndUser.Auth.login");

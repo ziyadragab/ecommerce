@@ -13,9 +13,18 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('status')->default(0);
-            $table->foreignId("user_id")->constrained("users")->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId("cart_id")->constrained("carts")->onDelete('cascade')->onUpdate('cascade');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('address_one');
+            $table->string('address_two')->nullable();
+            $table->string('country');
+            $table->string('city');
+            $table->boolean('status')->default(0);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->decimal('total_price',8,2);
             $table->timestamps();
 
         });

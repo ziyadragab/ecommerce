@@ -1,4 +1,3 @@
-Copy
 @extends('Admin.includes.master')
 
 @section('title')

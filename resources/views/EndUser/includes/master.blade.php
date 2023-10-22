@@ -7,10 +7,14 @@
             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         @include('EndUser/includes/head')
-        <title>Document</title>
+        <title>Ecommerce App</title>
     </head>
 
     <body>
+        <?php
+
+         $carts= \App\Models\Cart::get();    
+        ?>
         <div class="container-fluid">
             <div class="row bg-secondary py-1 px-xl-5">
                 <div class="col-lg-6 d-none d-lg-block">
@@ -45,15 +49,7 @@
                             </div>
                         </div>
 
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                                data-toggle="dropdown">LANGUAGE</button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <button class="dropdown-item" type="button">ENGLISH</button>
-                                <button class="dropdown-item" type="button">ARABIC</button>
 
-                            </div>
-                        </div>
                     </div>
                     <div class="d-inline-flex align-items-center d-block d-lg-none">
                         <a href="" class="btn px-0 ml-2">
@@ -144,7 +140,7 @@
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="" class="nav-item nav-link active">Home</a>
                                 <a href="" class="nav-item nav-link">Shop</a>
-                                <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                               
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
                                             class="fa fa-angle-down mt-1"></i></a>
@@ -156,16 +152,14 @@
                                 <a href="" class="nav-item nav-link">Contact</a>
                             </div>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                <a href="" class="btn px-0">
-                                    <i class="fas fa-heart text-primary"></i>
-                                    <span class="badge text-secondary border border-secondary rounded-circle"
-                                        style="padding-bottom: 2px;">0</span>
-                                </a>
-                                <a href="" class="btn px-0 ml-3">
-                                    <i class="fas fa-shopping-cart text-primary"></i>
-                                    <span class="badge text-secondary border border-secondary rounded-circle"
-                                        style="padding-bottom: 2px;">0</span>
-                                </a>
+                                <div class="cart-icon ml-auto py-0 d-none d-lg-block">
+                                    <a href="{{ route('cart.show') }}" class="btn px-0 ml-3">
+                                        <i class="fas fa-shopping-cart text-primary"></i>
+                                        <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">
+                                            {{ $carts->count() }} <!-- Assuming $carts variable is passed from the controller -->
+                                        </span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </nav>
