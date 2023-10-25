@@ -5,7 +5,7 @@ use App\Models\Product;
 
 trait ProductTrait{
      public function getProducts($count){
-        return Product::inRandomOrder()->limit($count)->get(['id','name','price','image']);
+        return Product::inRandomOrder()->limit($count)->with('colors','sizes');
      }
 }
 

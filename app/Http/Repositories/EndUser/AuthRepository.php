@@ -18,7 +18,6 @@ class AuthRepository implements AuthInterface
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
-
             $user = Auth::user();
             toast('Welcome ' . $user->name, 'success');
             return redirect()->route('endUser.index');

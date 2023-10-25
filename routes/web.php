@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\EndUser\AuthController;
 use App\Http\Controllers\EndUser\CartController;
+use App\Http\Controllers\EndUser\FilterController;
 use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\EndUser\OrderController;
 use App\Http\Controllers\EndUser\RegisterController;
+use App\Http\Controllers\EndUser\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,3 +63,15 @@ Route::group(
 
     }
 );
+Route::group(
+    [
+        'as'=>'shop.',
+        'controller'=> ShopController::class,
+    ],
+    function(){
+        Route::get('show','show')->name('show');
+        Route::get('showProductsWithFilterColor','filterByColor')->name('filterByColor');
+        Route::get('showProductsWithFilterSize','filterBySize')->name('filterBySize');
+    }
+);
+
