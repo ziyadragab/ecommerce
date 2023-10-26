@@ -10,10 +10,12 @@ use App\Http\Interfaces\Admin\ProductInterface;
 use App\Http\Interfaces\Admin\SettingInterface;
 use App\Http\Interfaces\EndUser\AuthInterface;
 use App\Http\Interfaces\EndUser\CartInterface;
+use App\Http\Interfaces\EndUser\ContactInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Http\Interfaces\EndUser\HomeInterface;
 use App\Http\Interfaces\EndUser\OrderInterface;
 use App\Http\Interfaces\EndUser\RegisterInterface;
+use App\Http\Interfaces\EndUser\ShopInterface;
 use App\Http\Repositories\Admin\AdRepository;
 use App\Http\Repositories\Admin\AuthRepository as AdminAuthRepository;
 use App\Http\Repositories\Admin\CategoryRepository;
@@ -22,9 +24,11 @@ use App\Http\Repositories\Admin\ProductRepository;
 use App\Http\Repositories\Admin\SettingRepository;
 use App\Http\Repositories\EndUser\AuthRepository;
 use App\Http\Repositories\EndUser\CartRepository;
+use App\Http\Repositories\EndUser\ContactRepository;
 use App\Http\Repositories\EndUser\HomeRepository;
 use App\Http\Repositories\EndUser\OrderRepository;
 use App\Http\Repositories\EndUser\RegisterRepository;
+use App\Http\Repositories\EndUser\ShopRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -59,6 +63,16 @@ class RepositoryServiceProvider extends ServiceProvider
            OrderRepository::class
 
         );
+        $this->app->bind(
+            ShopInterface::class,
+            ShopRepository::class
+
+         );
+         $this->app->bind(
+            ContactInterface::class,
+            ContactRepository::class
+
+         );
         //EndUser End
 
         //Admin

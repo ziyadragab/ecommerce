@@ -184,9 +184,13 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src={{$product->image }} alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-
+                            <form action="{{ route('cart.add') }}" method="get">
+                                @csrf
+                                 <div class="product-action">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <button class="btn btn-outline-dark btn-square" href="" ><i class="fa fa-shopping-cart"></i></button>
+                            </div>
+                        </form>
                         </div>
                     </div>
                     <div class="text-center py-4">

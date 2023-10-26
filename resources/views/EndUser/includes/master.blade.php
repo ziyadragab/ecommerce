@@ -13,7 +13,7 @@
     <body>
         <?php
 
-         $carts= \App\Models\Cart::get();    
+         $carts= \App\Models\Cart::get();
         ?>
         <div class="container-fluid">
             <div class="row bg-secondary py-1 px-xl-5">
@@ -84,10 +84,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-4 col-6 text-right">
-                    <p class="m-0">Customer Service</p>
-                    <h5 class="m-0">+012 345 6789</h5>
-                </div>
+                
             </div>
         </div>
         <!-- Topbar End -->
@@ -139,24 +136,20 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="" class="nav-item nav-link active">Home</a>
-                                <a href="" class="nav-item nav-link">Shop</a>
-                               
+                                <a href="{{ route('shop.show') }}" class="nav-item nav-link">Shop</a>
+
                                 <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i
-                                            class="fa fa-angle-down mt-1"></i></a>
-                                    <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                        <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                        <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                    </div>
+                                    <a href="{{ route('cart.show') }}" class="nav-link dropdown-toggle" >Shoping Cart </a>
                                 </div>
-                                <a href="" class="nav-item nav-link">Contact</a>
+
+                                <a href="{{route('contact.create')}}" class="nav-item nav-link">Contact</a>
                             </div>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                                 <div class="cart-icon ml-auto py-0 d-none d-lg-block">
                                     <a href="{{ route('cart.show') }}" class="btn px-0 ml-3">
                                         <i class="fas fa-shopping-cart text-primary"></i>
                                         <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">
-                                            {{ $carts->count() }} <!-- Assuming $carts variable is passed from the controller -->
+                                            {{ auth()->check() ? $carts->count() : 0 }}
                                         </span>
                                     </a>
                                 </div>

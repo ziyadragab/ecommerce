@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EndUser\AuthController;
 use App\Http\Controllers\EndUser\CartController;
+use App\Http\Controllers\EndUser\ContactController;
 use App\Http\Controllers\EndUser\FilterController;
 use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\EndUser\OrderController;
@@ -54,6 +55,7 @@ Route::group(
 Route::group(
     [
         'as'=>'order.',
+        'prefix'=>'orders',
         'controller'=> OrderController::class,
         'middleware'=>'auth'
     ],
@@ -72,6 +74,20 @@ Route::group(
         Route::get('show','show')->name('show');
         Route::get('showProductsWithFilterColor','filterByColor')->name('filterByColor');
         Route::get('showProductsWithFilterSize','filterBySize')->name('filterBySize');
+    }
+);
+
+Route::group(
+    [
+        'as'=>'contact.',
+        'controller' => ContactController::class,
+    ],
+    function(){
+        Route::get('create','create')->name('create');
+        Route::post('store','store')->name('store');
+        Route::get('admin/contacts','index')->name('index')->middleware('Is_Admin');
+        Route::delete('admin/contacts/{contact}','delete')->name('delete')->middleware('Is_Admin');
+
     }
 );
 

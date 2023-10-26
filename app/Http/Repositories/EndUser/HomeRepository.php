@@ -15,7 +15,7 @@ class HomeRepository implements HomeInterface{
      {
         $ads=$this->getAds(1);
         $categories=$this->getCategories(12);
-        $products=$this->getProducts(8);
+        $products=$this->getProducts(8)->get();
         $carts = Cart::where('user_id', auth()->id())->get();
 
         return view('EndUser.index',compact(['ads','categories','products','carts']));
