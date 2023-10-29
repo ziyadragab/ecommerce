@@ -11,19 +11,11 @@
     </head>
 
     <body>
-        <?php
 
-         $carts= \App\Models\Cart::get();
-        ?>
         <div class="container-fluid">
             <div class="row bg-secondary py-1 px-xl-5">
                 <div class="col-lg-6 d-none d-lg-block">
-                    <div class="d-inline-flex align-items-center h-100">
-                        <a class="text-body mr-3" href="">About</a>
-                        <a class="text-body mr-3" href="#">Contact</a>
-                        <a class="text-body mr-3" href="">Help</a>
-                        <a class="text-body mr-3" href="">FAQs</a>
-                    </div>
+
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
@@ -75,16 +67,10 @@
                 <div class="col-lg-4 col-6 text-left">
                     <form action="">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for products">
-                            <div class="input-group-append">
-                                <span class="input-group-text bg-transparent text-primary">
-                                    <i class="fa fa-search"></i>
-                                </span>
-                            </div>
-                        </div>
+                      </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
         <!-- Topbar End -->
@@ -101,26 +87,17 @@
                     </a>
                     <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
                         id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+                        @php
+                            $categories=App\Models\Category::get('name');
+                        @endphp
+                        @forelse ($categories as $category )
                         <div class="navbar-nav w-100">
-                            <div class="nav-item dropdown dropright">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dresses <i
-                                        class="fa fa-angle-right float-right mt-1"></i></a>
-                                <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                    <a href="" class="dropdown-item">Men's Dresses</a>
-                                    <a href="" class="dropdown-item">Women's Dresses</a>
-                                    <a href="" class="dropdown-item">Baby's Dresses</a>
-                                </div>
-                            </div>
-                            <a href="" class="nav-item nav-link">Shirts</a>
-                            <a href="" class="nav-item nav-link">Jeans</a>
-                            <a href="" class="nav-item nav-link">Swimwear</a>
-                            <a href="" class="nav-item nav-link">Sleepwear</a>
-                            <a href="" class="nav-item nav-link">Sportswear</a>
-                            <a href="" class="nav-item nav-link">Jumpsuits</a>
-                            <a href="" class="nav-item nav-link">Blazers</a>
-                            <a href="" class="nav-item nav-link">Jackets</a>
-                            <a href="" class="nav-item nav-link">Shoes</a>
+                            <a href="" class="nav-item nav-link">{{ $category->name }}</a>
                         </div>
+                        @empty
+                        No Category Found
+                        @endforelse
+
                     </nav>
                 </div>
                 <div class="col-lg-9">
@@ -135,7 +112,7 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="" class="nav-item nav-link active">Home</a>
+                                <a href="{{ route('endUser.index') }}" class="nav-item nav-link active">Home</a>
                                 <a href="{{ route('shop.show') }}" class="nav-item nav-link">Shop</a>
 
                                 <div class="nav-item dropdown">
@@ -145,13 +122,33 @@
                                 <a href="{{route('contact.create')}}" class="nav-item nav-link">Contact</a>
                             </div>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                                <div class="cart-icon ml-auto py-0 d-none d-lg-block">
-                                    <a href="{{ route('cart.show') }}" class="btn px-0 ml-3">
-                                        <i class="fas fa-shopping-cart text-primary"></i>
-                                        <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">
-                                            {{ auth()->check() ? $carts->count() : 0 }}
-                                        </span>
-                                    </a>
+                                <div class="cart-notification-container" style="display: flex; align-items: center;">
+                                    <div class="cart-icon ml-auto py-0 d-none d-lg-block">
+                                        <a href="{{ route('cart.show') }}" class="btn px-0 ml-3">
+                                            <i class="fas fa-shopping-cart text-primary"></i>
+                                            <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">
+                                                {{ auth()->check() ? auth()->user()->carts()->count() : 0 }}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a href="#" class="btn px-0 ml-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-bell text-primary"></i>
+                                            <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px; position: relative; background-color: red; color: white; font-size: 12px; font-weight: bold; border-radius: 50%;">
+                                                {{ auth()->user()->unreadNotifications->count() }}
+                                            </span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            @if (auth()->user()->unreadNotifications->count() > 0)
+                                                @foreach (auth()->user()->unreadNotifications as $notification)
+                                                    <a class="dropdown-item" href="#">{{ $notification->data['title'] }}</a>
+                                                @endforeach
+                                            @else
+                                                <a class="dropdown-item" href="#">No Notification</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

@@ -55,13 +55,17 @@ Route::group(
 Route::group(
     [
         'as'=>'order.',
-        'prefix'=>'orders',
         'controller'=> OrderController::class,
         'middleware'=>'auth'
     ],
     function(){
-        Route::get('create','create')->name('create');
-        Route::post('store','store')->name('store');
+        Route::get('orders/create','create')->name('create');
+        Route::post('orders/stor','store')->name('store');
+        Route::get('admin/orders','index')->name('index')->middleware('Is_Admin');
+        Route::get('admin/orders/{order}','changeStatus')->name('changeStatus')->middleware('Is_Admin');
+        Route::delete('admin/orders/{order}','delete')->name('delete')->middleware('Is_Admin');
+
+
 
     }
 );

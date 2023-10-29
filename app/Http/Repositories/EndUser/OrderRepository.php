@@ -4,6 +4,8 @@ namespace App\Http\Repositories\EndUser;
 use App\Models\Cart;
 use App\Http\Interfaces\EndUser\OrderInterface;
 use App\Models\Order;
+use App\Notifications\OrderStatusChangedNotification;
+use Illuminate\Support\Facades\Notification;
 
 class OrderRepository implements OrderInterface{
 
@@ -31,6 +33,27 @@ class OrderRepository implements OrderInterface{
        ]);
        toast('Order Created Successfully ','success');
        return redirect()->route('endUser.index');
+    }
+    public function index()
+    {
+        $orders=Order::get();
+        return view('Admin.Pages.Order.index',compact('orders'));
+    }
+    public function changeStatus($order)
+    {
+        $order->update(['status' => $order->status == 1 ? 0 : 1]);
+        $user = $order->user;
+        if($order->status == 1){
+        Notification::send($user, new OrderStatusChangedNotification($order));
+        }
+        toast('Done', 'success');
+        return back();
+    }
+    public function delete($order)
+    {
+        $order->delete();
+        toast('Order Deleted Successfully ', 'success');
+        return back();
     }
 }
 

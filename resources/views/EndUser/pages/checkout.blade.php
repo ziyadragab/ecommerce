@@ -105,7 +105,7 @@
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
-                            <h5>The Total Price For These Product :</h5>
+                            <h5>The Total Price :</h5>
                             <h5 >{{$total}}</h5>
                             <input type="hidden" name="total" value="{{ $total }}">
                           </div>

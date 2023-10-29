@@ -47,10 +47,10 @@
                 </a>
                 <ul class="dropdown-menu submenu list-unstyled" id="dashboard" data-bs-parent="#accordionExample">
                     <li class="active">
-                        <a href=""> User Interface </a>
+                        <a href="{{ route('endUser.index') }}"> User Interface </a>
                     </li>
                     <li>
-                        <a href=""> Admin Home </a>
+                        <a href="{{ route('admin.index') }}"> Admin Home </a>
                     </li>
                 </ul>
             </li>
@@ -71,17 +71,8 @@
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-cpu">
-                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                            <rect x="9" y="9" width="6" height="6"></rect>
-                            <line x1="9" y1="1" x2="9" y2="4"></line>
-                            <line x1="15" y1="1" x2="15" y2="4"></line>
-                            <line x1="9" y1="20" x2="9" y2="23"></line>
-                            <line x1="15" y1="20" x2="15" y2="23"></line>
-                            <line x1="20" y1="9" x2="23" y2="9"></line>
-                            <line x1="20" y1="14" x2="23" y2="14"></line>
-                            <line x1="1" y1="9" x2="4" y2="9"></line>
-                            <line x1="1" y1="14" x2="4" y2="14"></line>
+                            class="feather feather-folder">
+                            <path d="M21 8h-8l-2-2H3a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1z"></path>
                         </svg>
                         <span>Category</span>
                     </div>
@@ -95,61 +86,35 @@
                 </a>
                 <ul class="dropdown-menu submenu list-unstyled" id="apps" data-bs-parent="#accordionExample">
                     <li>
-                        <a href=""> Category </a>
+                        <a href="{{ route('admin.category.index') }}"> Categories </a>
                     </li>
                     <li>
-                        <a href=""> Add New Category </a>
+                        <a href="{{route('admin.category.create')}}"> Add New Category </a>
                     </li>
 
 
 
-
-
-                    <li class="sub-submenu dropend">
-
-                        <ul class="dropdown-menu list-unstyled sub-submenu" id="blog" data-bs-parent="#apps">
-                            <li>
-                                <a href="./app-blog-grid.html"> Grid </a>
-                            </li>
-                            <li>
-                                <a href="./app-blog-list.html"> List </a>
-                            </li>
-                            <li>
-                                <a href="./app-blog-post.html"> Post </a>
-                            </li>
-                            <li>
-                                <a href="./app-blog-create.html"> Create </a>
-                            </li>
-                            <li>
-                                <a href="./app-blog-edit.html"> Edit </a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </li>
 
             <li class="menu menu-heading">
                 <div class="heading">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-minus">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
+
                     <span>USER INTERFACE</span>
                 </div>
             </li>
 
             <li class="menu">
                 <a href="#components" data-bs-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
-                    <div class="">
+                    <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-box">
-                            <path
-                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                            </path>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            class="feather feather-package">
+                            <path d="M23 9h-6.3a2 2 0 0 0-1.4.6l-1.4 1.4a2 2 0 0 1-2.8 0L8.7 9.6a2 2 0 0 0-2.8 0L4.7 11a2 2 0 0 1-2.8 0L1 9a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2zM9 21h6"></path>
+                            <path d="M20.4 10.6L23 9"></path>
+                            <path d="M16 3.5L21 9l-5 5.5"></path>
+                            <path d="M21 9l-5 5.5"></path>
+                            <path d="M5 18.5L10 14l5 4.5"></path>
                         </svg>
                         <span>Products</span>
                     </div>
@@ -163,10 +128,46 @@
                 </a>
                 <ul class="dropdown-menu submenu list-unstyled" id="components" data-bs-parent="#accordionExample">
                     <li>
-                        <a href=""> Products List </a>
+                        <a href="{{ route('admin.product.index') }}"> Products </a>
                     </li>
                     <li>
-                        <a href=""> Create New Product </a>
+                        <a href="{{ route('admin.product.create') }}"> Create New Product </a>
+                    </li>
+                </ul>
+            </li>
+             <li class="menu">
+                <a href="#components" data-bs-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-shopping-bag">
+                            <path
+                                d="M9 2l-4 5v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-4-5H9zm7 7H8"></path>
+                            <path d="M3 6h18"></path>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        @php
+                        $orders=App\Models\Order::get();
+                        $orderCount = $orders->count();
+                        @endphp
+                        <span style="margin-left: 5px;">Orders</span>
+
+                        <span style="display: inline-block; width: 20px; height: 20px; text-align: center; line-height: 20px; border-radius: 50%; background-color: red; color: #fff;">
+                            {{ $orderCount > 0 ? $orderCount : '0' }}
+                        </span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </a>
+                <ul class="dropdown-menu submenu list-unstyled" id="components" data-bs-parent="#accordionExample">
+                    <li>
+
+                        <a href="{{ route('order.index') }}">Orders</a>
                     </li>
                 </ul>
             </li>
@@ -176,10 +177,17 @@
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-zap">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            class="feather feather-megaphone">
+                            <path
+                                d="M5 9C5 6.79086 6.79086 5 9 5H15C17.2091 5 19 6.79086 19 9V15C19 17.2091 17.2091 19 15 19H9C6.79086 19 5 17.2091 5 15V9Z"></path>
+                            <path
+                                d="M9.94997 15L9.24268 15.7073C8.92271 16.0273 8.92271 16.5343 9.24268 16.8543C9.42266 17.0343 9.65687 17.1243 9.89096 17.1243C10.125 17.1243 10.3591 17.0343 10.5391 16.8543L11.2427 16.1508C11.5627 15.8308 11.5627 15.3238 11.2427 15.0038L10.5364 14.2973C10.5364 14.2973 10.5364 14.2973 10.5364 14.2973L10.5354 14.2963L9.94997 15Z"></path>
+                            <path d="M15 9H17V15H15V9Z"></path>
                         </svg>
                         <span>Ads</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -191,10 +199,10 @@
                 </a>
                 <ul class="dropdown-menu submenu list-unstyled" id="elements" data-bs-parent="#accordionExample">
                     <li>
-                        <a href=""> All Ads </a>
+                        <a href="{{ route('admin.ad.index') }}">Ads</a>
                     </li>
                     <li>
-                        <a href=""> Create new ad </a>
+                        <a href="{{ route('admin.ad.create') }}"> Create New Ad </a>
                     </li>
 
                 </ul>
@@ -209,42 +217,6 @@
                     </svg>
                     <span>TABLES AND FORMS</span>
                 </div>
-            </li>
-
-            <li class="menu">
-                <a href="#tables" data-bs-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-layers">
-                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                            <polyline points="2 17 12 22 22 17"></polyline>
-                            <polyline points="2 12 12 17 22 12"></polyline>
-                        </svg>
-                        <span></span>
-                    </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-chevron-right">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </div>
-                </a>
-                <ul class="dropdown-menu submenu list-unstyled" id="tables" data-bs-parent="#accordionExample">
-
-                    <li>
-                        <a href=""> </a>
-                    </li>
-
-                    <li class="sub-submenu dropend">
-                        <a href="" class="dropdown-toggle collapsed">
-
-
-                        </a>
-                    </li>
-
-                </ul>
             </li>
 
             <li class="menu">
@@ -469,12 +441,13 @@
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-plus-circle">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="16"></line>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                            class="feather feather-settings">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 14c.3-.6.5-1.3.5-2s-.2-1.4-.5-2l2.3-1.8c.4-.3.6-.8.5-1.3l-2-3.5c-.2-.4-.7-.6-1.2-.4l-2.5 1c-.6-.4-1.3-.7-2.1-.7h-3c-.8 0-1.5.3-2.1.7l-2.5-1c-.4-.2-.9 0-1.2.4l-2 3.5c-.2.4-.1.9.3 1.3l2.3 1.8c-.3.6-.5 1.3-.5 2s.2 1.4.5 2l-2.3 1.8c-.4.3-.6.8-.5 1.3l2 3.5c.2.4.7.6 1.2.4l2.5-1c.6.4 1.3.7 2.1.7h3c.8 0 1.5-.3 2.1-.7l2.5 1c.4.2.9 0 1.2-.4l2-3.5c.2-.4.1-.9-.3-1.3l-2.3-1.8zM12 15.5A3.5 3.5 0 1 1 12 8a3.5 3.5 0 0 1 0 7z">
+                            </path>
                         </svg>
-                        <span>More</span>
+                        <span>Settings</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -486,11 +459,9 @@
                 </a>
                 <ul class="dropdown-menu submenu list-unstyled" id="more" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="#"> Setting </a>
+                        <a href="{{ route('admin.setting.index') }}"> Setting </a>
                     </li>
-                    <li>
-                        <a href="#"> Add New Setting </a>
-                    </li>
+                    
                 </ul>
             </li>
 
