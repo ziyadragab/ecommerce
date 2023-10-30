@@ -72,8 +72,7 @@ Orders
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($orders as $order)
-
+                                        @forelse($orders as $order)
                                         <tr>
                                             <td>{{ $order->first_name }}</td>
                                             <td>{{ $order->last_name }}</td>
@@ -103,8 +102,10 @@ Orders
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
 
+                                        @empty
+                                        <h5>No Data</h5>
+                                        @endforelse
 
                             </div>
                         </div>

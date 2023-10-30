@@ -1,17 +1,20 @@
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
     @php
-    $settings = \App\Models\Setting::get();
+    $settings = \App\Models\Setting::get()??null;
 @endphp
     <div class="row px-xl-5 pt-5">
-        @foreach ($settings as $setting )
-
+        @forelse($settings as $setting )
         <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
             <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>{{$setting->address}}</p>
             <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>{{ $setting->email }}</p>
             <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>{{ $setting->phone }}</p>
         </div>
-        @endforeach
+        @empty
+        Setting Not Created
+        @endforelse
+
+
 
         <div class="col-lg-8 col-md-12">
             <div class="row">
@@ -83,10 +86,11 @@
 <script src="mail/contact.js"></script>
 
 <script src="{{ asset('assetEndUser/js/cart.js') }}"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 <!-- Template Javascript -->
 <script src={{ asset("assetEndUser/js/main.js") }}></script>
+
 @include('sweetalert::alert')
 @stack('js')

@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($carts as $cart)
+                    @forelse (auth()->user()->carts as $cart)
                     <tr>
                         <td class="align-middle">
                             <img src="{{ $cart->product->image }}" alt="" style="width: 50px;">
@@ -53,8 +53,12 @@
                         </form>
                         </td>
                     </tr>
-                    @endforeach
+
+
                 </tbody>
+                @empty
+                @endforelse
+
             </table>
         </div>
         <div class="col-lg-4">

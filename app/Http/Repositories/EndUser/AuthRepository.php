@@ -30,7 +30,7 @@ class AuthRepository implements AuthInterface
     {
         session()->flush();
         Auth::logout();
-        return back();
+        return redirect()->route('endUser.index');
     }
 
 }

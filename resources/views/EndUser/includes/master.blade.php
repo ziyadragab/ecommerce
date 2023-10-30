@@ -88,7 +88,7 @@
                     <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
                         id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                         @php
-                            $categories=App\Models\Category::get('name');
+                            $categories=App\Models\Category::get('name')??null;
                         @endphp
                         @forelse ($categories as $category )
                         <div class="navbar-nav w-100">
@@ -127,7 +127,11 @@
                                         <a href="{{ route('cart.show') }}" class="btn px-0 ml-3">
                                             <i class="fas fa-shopping-cart text-primary"></i>
                                             <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">
-                                                {{ auth()->check() ? auth()->user()->carts()->count() : 0 }}
+                                                @auth
+                                                    {{ auth()->user()->carts()->count() }}
+                                                @else
+                                                    0
+                                                @endauth
                                             </span>
                                         </a>
                                     </div>
@@ -135,22 +139,30 @@
                                         <a href="#" class="btn px-0 ml-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-bell text-primary"></i>
                                             <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px; position: relative; background-color: red; color: white; font-size: 12px; font-weight: bold; border-radius: 50%;">
-                                                {{ auth()->user()->unreadNotifications->count() }}
+                                                @auth
+                                                    {{ auth()->user()->unreadNotifications->count() ?? 0 }}
+                                                @else
+                                                    0
+                                                @endauth
                                             </span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                            @if (auth()->user()->unreadNotifications->count() > 0)
-                                                @foreach (auth()->user()->unreadNotifications as $notification)
-                                                    <a class="dropdown-item" href="#">{{ $notification->data['title'] }}</a>
-                                                @endforeach
+                                            @auth
+                                                @if (auth()->user()->unreadNotifications->count() > 0)
+                                                    @foreach (auth()->user()->unreadNotifications as $notification)
+                                                        <a class="dropdown-item" href="#">{{ $notification->data['title'] }}</a>
+                                                    @endforeach
+                                                @else
+                                                    <a class="dropdown-item" href="#">No Notification</a>
+                                                @endif
                                             @else
                                                 <a class="dropdown-item" href="#">No Notification</a>
-                                            @endif
+                                            @endauth
                                         </div>
                                     </div>
                                 </div>
-                                </div>
                             </div>
+                            
                         </div>
                     </nav>
                 </div>

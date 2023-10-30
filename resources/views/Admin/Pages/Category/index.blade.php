@@ -70,7 +70,7 @@ categories
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($categories as $category)
+                                        @forelse ($categories as $category)
 
                                         <tr>
                                             <td>{{ $category->name }}</td>
@@ -93,7 +93,10 @@ categories
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                        <h5>No Data</h5>
+                                        @endforelse
+
 
 
                             </div>

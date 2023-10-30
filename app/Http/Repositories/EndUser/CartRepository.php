@@ -26,13 +26,12 @@ class CartRepository implements CartInterface{
     public function show()
     {
         if (Auth::check()) {
-            $carts=Cart::with('product')->get();
-            return view('EndUser.pages.cart',compact('carts'));
+            return view('EndUser.pages.cart');
         } else {
            return back();
         }
     }
-    
+
     public function delete($cart)
     {
         $cart->delete();

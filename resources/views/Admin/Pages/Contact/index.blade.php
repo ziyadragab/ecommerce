@@ -69,8 +69,7 @@ Contacts
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($contacts as $contact)
-
+                                        @forelse ($contacts as $contact)
                                         <tr>
                                             <td>{{ $contact->name }}</td>
                                             <td>{{ $contact->email }}</td>
@@ -87,10 +86,11 @@ Contacts
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
 
+                                        @empty
+                                        <h5>No Data</h5>
+                                        @endforelse
 
-                            </div>
                         </div>
                     </div>
 

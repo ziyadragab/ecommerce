@@ -13,4 +13,5 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href=" {{asset("assetEndUser/css/style.css")}} " rel="stylesheet">
+
 @stack('css')

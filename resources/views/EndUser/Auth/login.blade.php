@@ -1,93 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
 
-    <head>
-        <!--=====================================
-                    META-TAG PART START
-        =======================================-->
-        <!-- REQUIRE META -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href=" {{asset("assetEndUser/Auth/fonts/icomoon/style.css")}} ">
 
 
-        <title> Login Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href=" {{asset("assetEndUser/Auth/css/bootstrap.min.css")}} ">
+
+    <!-- Style -->
+    <link rel="stylesheet" href=" {{asset("assetEndUser/Auth/css/style.css")}}" >
+
+    <title>Contact Form #6</title>
+</head>
+<body>
 
 
-        <!-- FOR FONTAWESOME -->
-        <link rel="stylesheet" href="{{ asset('assetEndUser/css/font-awesome/fontawesome.css') }}">
+<div class="content">
 
-        <!-- FOR BOOTSTRAP -->
-        <link rel="stylesheet" href="{{asset ('assetEndUser/css/bootstrap.min.css') }}">
-
-        <!-- FOR COMMON STYLE -->
-        <link rel="stylesheet" href="{{asset ('assetEndUser/css/main.css') }}">
-
-        <!-- FOR USER FORM PAGE STYLE -->
-
-        <link rel="stylesheet" href="{{ asset('assetEndUser/css/user-form.css') }}">
-
-    </head>
-
-    <title>Login Form</title>
-
-    <body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
 
 
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+
+                        <h3 class="heading mb-4">Let's talk about everything!</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas debitis, fugit natus?</p>
+
+                        <p><img src=" {{asset("assetEndUser/Auth/images/undraw-contact.svg")}} " alt="Image" class="img-fluid"></p>
 
 
-        <div class="container" id="login-tab">
-            <div class="row d-flex justify-content-center align-items-center vh-100">
-                <div class="row w-50 mt-3">
-                    <form method="POST" action="{{ route('endUser.login') }}">
-                        <div class="user-form-title">
-                            <h2>Login Form</h2>
-                            <p>Use credentials to access your account.</p>
-                        </div>
-                        @csrf
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input type="text" name="email" class="form-control" placeholder="Email">
-                                    <small class="form-alert">Please follow this example - ziyad@ragab.com</small>
+                    </div>
+                    <div class="col-md-6">
+
+                        <form class="mb-5" action="{{route('endUser.login')}}" method="post" id="contactForm" name="contactForm">
+                            @csrf
+
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
                                 </div>
                                 @error('email')
-                                <p class="text-danger">{{ $message }}</p>
+                                <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input type="password" name="password" class="form-control" id="pass"
-                                        placeholder="Password">
-                                    <button type="button" class="form-icon"><i class="eye fas fa-eye"></i></button>
-                                    <small class="form-alert">Password must be 6 characters</small>
+
+
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <input type="password" class="form-control" name="password" id="subject" placeholder="password">
+                                </div>
+                                @error('password')
+                                <p class="text-danger">{{$message}}</p>
+                                @enderror
+                            </div>
+
+                            <a href="{{route('endUser.registerForm')}}" style="color: blue">create new Account</a>
+
+
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-primary rounded-0 py-2 px-4">Login</button>
+                                    <span class="submitting"></span>
                                 </div>
                             </div>
-                            @error('password')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <button type="submit" name="submit" class="btn btn-inline">
-                                        <i class="fas fa-unlock"></i>
-                                        <span>Enter your account</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-form-direction">
-                            <p>Don't have an account? Click here <a href="{{ route('endUser.registerForm') }}"><span>( sign up )</span></a>
-                            </p>
-                        </div>
-                    </form>
+                        </form>
+
+                        <div id="form-message-warning mt-4"></div>
+
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        @include('sweetalert::alert')
-        @stack('js')
+</div>
 
 
-    </body>
+<script src=" {{asset("assetEndUser/Auth/js/jquery-3.3.1.min.js")}} "></script>
+<script src=" {{asset("assetEndUser/Auth/js/popper.min.js")}} "></script>
+<script src=" {{asset("assetEndUser/Auth/js/bootstrap.min.js")}} "></script>
+<script src=" {{asset("assetEndUser/Auth/ js/jquery.validate.min.js")}}"></script>
+<script src=" {{asset("assetEndUser/Auth/js/main.js")}} "></script>
 
+</body>
 </html>

@@ -75,7 +75,7 @@ Products
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($products as $product)
+                                        @forelse($products as $product)
                                         <tr class="product-row">
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }}</td>
@@ -104,7 +104,9 @@ Products
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                            <h5>No Data</h5>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

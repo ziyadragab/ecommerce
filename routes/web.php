@@ -75,7 +75,7 @@ Route::group(
         'controller'=> ShopController::class,
     ],
     function(){
-        Route::get('show','show')->name('show');
+        Route::get('shop','show')->name('show');
         Route::get('showProductsWithFilterColor','filterByColor')->name('filterByColor');
         Route::get('showProductsWithFilterSize','filterBySize')->name('filterBySize');
     }
