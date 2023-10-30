@@ -118,4 +118,5 @@ Products
         </div>
     </div>
 </div>
+<script src="{{asset('assetsAdmin/src/assets/js/product/search.js')}}"></script>
 @endsection
