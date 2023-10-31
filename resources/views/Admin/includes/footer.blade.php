@@ -8,6 +8,8 @@
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 <script src="{{ asset('assetsAdmin/src/plugins/src/apex/apexcharts.min.js') }}"></script>
 <script src="{{asset('assetsAdmin/src/assets/js/dashboard/dash_1.js')}}"></script>
+<script src="{{asset('assetsAdmin/products/search.js')}}"></script>
+
 <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 @include('sweetalert::alert')
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthRepository implements AuthInterface
 {
-    use AuthTrait;
+
     public function loginForm()
     {
         return view("EndUser.Auth.login");
@@ -18,7 +18,6 @@ class AuthRepository implements AuthInterface
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::attempt($credentials)) {
-
             $user = Auth::user();
             toast('Welcome ' . $user->name, 'success');
             return redirect()->route('endUser.index');
@@ -31,7 +30,7 @@ class AuthRepository implements AuthInterface
     {
         session()->flush();
         Auth::logout();
-        return back();
+        return redirect()->route('endUser.index');
     }
 
 }

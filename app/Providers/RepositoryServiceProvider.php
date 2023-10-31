@@ -2,19 +2,33 @@
 
 namespace App\Providers;
 
+use App\Http\Interfaces\Admin\AdInterface;
 use App\Http\Interfaces\Admin\AuthInterface as AdminAuthInterface;
 use App\Http\Interfaces\Admin\CategoryInterface;
 use App\Http\Interfaces\Admin\HomeInterface as AdminHomeInterface;
+use App\Http\Interfaces\Admin\ProductInterface;
+use App\Http\Interfaces\Admin\SettingInterface;
 use App\Http\Interfaces\EndUser\AuthInterface;
+use App\Http\Interfaces\EndUser\CartInterface;
+use App\Http\Interfaces\EndUser\ContactInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Http\Interfaces\EndUser\HomeInterface;
+use App\Http\Interfaces\EndUser\OrderInterface;
 use App\Http\Interfaces\EndUser\RegisterInterface;
+use App\Http\Interfaces\EndUser\ShopInterface;
+use App\Http\Repositories\Admin\AdRepository;
 use App\Http\Repositories\Admin\AuthRepository as AdminAuthRepository;
 use App\Http\Repositories\Admin\CategoryRepository;
 use App\Http\Repositories\Admin\HomeRepository as AdminHomeRepository;
+use App\Http\Repositories\Admin\ProductRepository;
+use App\Http\Repositories\Admin\SettingRepository;
 use App\Http\Repositories\EndUser\AuthRepository;
+use App\Http\Repositories\EndUser\CartRepository;
+use App\Http\Repositories\EndUser\ContactRepository;
 use App\Http\Repositories\EndUser\HomeRepository;
+use App\Http\Repositories\EndUser\OrderRepository;
 use App\Http\Repositories\EndUser\RegisterRepository;
+use App\Http\Repositories\EndUser\ShopRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -39,6 +53,26 @@ class RepositoryServiceProvider extends ServiceProvider
             RegisterRepository::class
 
         );
+        $this->app->bind(
+            CartInterface::class,
+            CartRepository::class
+
+        );
+         $this->app->bind(
+           OrderInterface::class,
+           OrderRepository::class
+
+        );
+        $this->app->bind(
+            ShopInterface::class,
+            ShopRepository::class
+
+         );
+         $this->app->bind(
+            ContactInterface::class,
+            ContactRepository::class
+
+         );
         //EndUser End
 
         //Admin
@@ -58,6 +92,22 @@ class RepositoryServiceProvider extends ServiceProvider
             CategoryRepository::class
 
         );
+        $this->app->bind(
+            ProductInterface::class,
+            ProductRepository::class
+
+        );
+        $this->app->bind(
+            SettingInterface::class,
+            SettingRepository::class
+
+        );
+        $this->app->bind(
+            AdInterface::class,
+            AdRepository::class
+
+        );
+
     }
 
     /**

@@ -1,117 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
 
-    <head>
-        <!--=====================================
-                    META-TAG PART START
-        =======================================-->
-        <!-- REQUIRE META -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href=" {{asset("assetEndUser/Auth/fonts/icomoon/style.css")}} ">
 
 
-        <title>Register Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href=" {{asset("assetEndUser/Auth/css/bootstrap.min.css")}} ">
+
+    <!-- Style -->
+    <link rel="stylesheet" href=" {{asset("assetEndUser/Auth/css/style.css")}}" >
+
+    <title>Contact Form #6</title>
+  </head>
+  <body>
 
 
-        <!-- FOR FONTAWESOME -->
-        <link rel="stylesheet" href="{{ asset('assetEndUser/css/font-awesome/fontawesome.css') }}">
+  <div class="content">
 
-        <!-- FOR BOOTSTRAP -->
-        <link rel="stylesheet" href="{{asset ('assetEndUser/css/bootstrap.min.css') }}">
-
-        <!-- FOR COMMON STYLE -->
-        <link rel="stylesheet" href="{{asset ('assetEndUser/css/main.css') }}">
-
-        <!-- FOR USER FORM PAGE STYLE -->
-
-        <link rel="stylesheet" href="{{ asset('assetEndUser/css/user-form.css') }}">
-
-    </head>
-
-    <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
 
 
-        <br>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
 
-        <div class="container" id="login-tab">
+              <h3 class="heading mb-4">Let's talk about everything!</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas debitis, fugit natus?</p>
 
-            <div class="user-form-title">
-                <h2>Welcome!</h2>
-                <p>Use credentials to Create New account.</p>
+              <p><img src=" {{asset("assetEndUser/Auth/images/undraw-contact.svg")}} " alt="Image" class="img-fluid"></p>
+
+
             </div>
+            <div class="col-md-6">
 
-            <form method="POST" action="{{ route('endUser.register') }}">
+              <form class="mb-5" action="{{route('endUser.register')}}" method="post" id="contactForm" name="contactForm">
                 @csrf
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                placeholder="Your Name">
-                            <small class="form-alert">Please follow this example - Ziyad</small>
-                        </div>
-                    </div>
-
+                  <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                  </div>
                     @error('name')
                     <p class="text-danger">{{$message}}</p>
                     @enderror
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}"
-                                placeholder="Email">
-                            <small class="form-alert">Please follow this example - ziyad@ragab.com</small>
-                        </div>
-                    </div>
-
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                  </div>
                     @error('email')
                     <p class="text-danger">{{$message}}</p>
                     @enderror
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <input type="password" name="password" value="{{ old('password') }}" class="form-control"
-                                id="pass" placeholder="Password">
-                            <button type="button" class="form-icon"><i class="eye fas fa-eye"></i></button>
-                            <small class="form-alert">Password must be 6 characters</small>
-                        </div>
-                    </div>
-
-                    @error('password')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <input type="password" name="password_confirmation" class="form-control" id="pass"
-                                placeholder="Confirm Your Password">
-                            <button type="button" class="form-icon"><i class="eye fas fa-eye"></i></button>
-                            <small class="form-alert">Password must be the same of your password</small>
-                        </div>
-                    </div>
-
-                    @error('password_confirmation')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-                    <div class="col-12">
-                        <div class="form-group">
-                            <button type="submit" name="submit" class="btn btn-inline">
-                                <i class="fas fa-unlock"></i>
-                                <span>Create Acount</span>
-                            </button>
-                        </div>
-                    </div>
                 </div>
-            </form>
-            <div class="user-form-direction">
-                <p>Are You Have An Account? click on the <a href="{{ route('endUser.loginForm') }}"><span>( sign in )</span></p>
-                </a>
+               
+                  <div class="row">
+                      <div class="col-md-12 form-group">
+                          <input type="password" class="form-control" name="password" id="subject" placeholder="password">
+                      </div>
+                      @error('password')
+                      <p class="text-danger">{{$message}}</p>
+                      @enderror
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12 form-group">
+                          <input type="password" class="form-control" name="password_confirmation" id="subject" placeholder="Passowrd Confirm">
+                      </div>
+                      @error('password')
+                      <p class="text-danger">{{$message}}</p>
+                      @enderror
+                  </div>
+
+                  <a href="{{route('endUser.loginForm')}}" style="color: blue">Sign in</a>
+
+
+                  <div class="row">
+                  <div class="col-12">
+                   <button class="btn btn-primary rounded-0 py-2 px-4">Register</button>
+                  <span class="submitting"></span>
+                  </div>
+                </div>
+              </form>
+
+              <div id="form-message-warning mt-4"></div>
+
             </div>
+          </div>
         </div>
+      </div>
+    </div>
+
+  </div>
 
 
+    <script src=" {{asset("assetEndUser/Auth/js/jquery-3.3.1.min.js")}} "></script>
+    <script src=" {{asset("assetEndUser/Auth/js/popper.min.js")}} "></script>
+    <script src=" {{asset("assetEndUser/Auth/js/bootstrap.min.js")}} "></script>
+    <script src=" {{asset("assetEndUser/Auth/ js/jquery.validate.min.js")}}"></script>
+    <script src=" {{asset("assetEndUser/Auth/js/main.js")}} "></script>
 
-
-    </body>
-
+  </body>
 </html>

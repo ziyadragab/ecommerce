@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, string ...$guards): Response
     {
             if (auth()->user()) {
-                return redirect(route('endUser.index'));
+                return back();
             }
         return $next($request);
     }

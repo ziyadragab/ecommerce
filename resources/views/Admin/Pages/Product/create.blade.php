@@ -46,7 +46,7 @@ Add Product
                     <div class="widget-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>Create New Category</h4>
+                                <h4>Create New Product</h4>
                             </div>
                         </div>
                     </div>
@@ -55,52 +55,72 @@ Add Product
                             @csrf
 
                             <div class="form-group mb-4">
-
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                    id="exampleFormControlInput2" placeholder="Product Name">
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" id="exampleFormControlInput2" placeholder="Product Name" required>
                                 @error('name')
-                                <p class="text-danger">{{$message}}</p>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-4">
-
-                                <input type="text" class="form-control" name="price" value="{{ old('name') }}"
-                                    id="exampleFormControlInput2" placeholder="Product price">
-                                @error('price')
-                                <p class="text-danger">{{$message}}</p>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label for="">Product Description</label>
-                                <textarea name="description" id=""
-                                    class="form-control my-2 @error('description') is-invalid @enderror"
-                                    placeholder="Product Description" cols="30" rows="10"></textarea>
-                                @error('description')
-                                <p class="text-danger">{{$message}}</p>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-4">
-                                <input type="file" class="form-control" name="image" id="exampleFormControlInput2">
-                                @error('image')
                                 <p class="text-danger">{{ $message }}</p>
-
                                 @enderror
                             </div>
 
-                            <select name="category_id" id="" class="form-control my-2">
-                                <option value="">Select Category Menu</option>
-                                @foreach ($categories as $category )
-                                <option value="{{$category->id}}" @selected('category_id')>{{$category->name}}</option>
+                            <div class="form-group mb-4">
+                                <input type="number" class="form-control" name="price" value="{{ old('price') }}" id="exampleFormControlInput2" placeholder="Product Price" required>
+                                @error('price')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <textarea name="description" class="form-control" id="" cols="30" rows="10" placeholder="Product Description" required>{{ old('description') }}</textarea>
+                                @error('description')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <select name="category_id" class="form-control my-2" required>
+                                    <option value="">Select Category</option>
+                                    @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="colors">Colors:</label><br>
+                                @foreach ($colors as $color)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="color_{{ $color->id }}" name="colors[]" value="{{ $color->id }}">
+                                    <label class="form-check-label" for="color_{{ $color->id }}">{{ $color->name }}</label>
+                                </div>
                                 @endforeach
-                            </select>
-                            @error('category_id')
-                            <p class="text-danger">{{ $message }}</p>
+                                @error('colors')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                            @enderror
+                            <div class="form-group">
+                                <label for="sizes">Sizes:</label><br>
+                                @foreach ($sizes as $size)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="size_{{ $size->id }}" name="sizes[]" value="{{ $size->id }}">
+                                    <label class="form-check-label" for="size_{{ $size->id }}">{{ $size->name }}</label>
+                                </div>
+                                @endforeach
+                                @error('sizes')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                            <input type="submit" class="mt-4 mb-4 btn btn-primary">
+                            <div class="form-group mb-4">
+                                <input type="file" class="form-control" name="image" id="exampleFormControlInput2" required>
+                                @error('image')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <input type="submit" class="mt-4 mb-4 btn btn-primary" value="Create Product">
                         </form>
                     </div>
                 </div>
@@ -108,4 +128,5 @@ Add Product
 
         </div>
     </div>
-    @endsection
+</div>
+@endsection
