@@ -4,6 +4,8 @@ namespace App\Http\Repositories\EndUser;
 use App\Models\Cart;
 use App\Http\Interfaces\EndUser\OrderInterface;
 use App\Models\Order;
+use App\Models\User;
+use App\Notifications\OrderNotification;
 use App\Notifications\OrderStatusChangedNotification;
 use Illuminate\Support\Facades\Notification;
 
@@ -18,7 +20,7 @@ class OrderRepository implements OrderInterface{
     }
     public function store($request)
     {
-       Order::create([
+        $order =  Order::create([
         'first_name'=>$request->first_name,
         'last_name'=>$request->last_name,
         'email'=>$request->email,
@@ -31,6 +33,10 @@ class OrderRepository implements OrderInterface{
         'user_id'=>auth()->id(),
         'total_price'=>$request->total
        ]);
+       $user = auth()->user();
+       $user->carts()->delete();
+       $admin = User::where('status', 1)->first();
+       $admin->notify(new OrderNotification($order));
        toast('Order Created Successfully ','success');
        return redirect()->route('endUser.index');
     }
@@ -44,7 +50,7 @@ class OrderRepository implements OrderInterface{
         $order->update(['status' => $order->status == 1 ? 0 : 1]);
         $user = $order->user;
         if($order->status == 1){
-        Notification::send($user, new OrderStatusChangedNotification($order));
+        $user->notify(new OrderStatusChangedNotification($order));
         }
         toast('Done', 'success');
         return back();

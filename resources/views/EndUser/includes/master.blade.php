@@ -136,11 +136,15 @@
                                         </a>
                                     </div>
                                     <div class="dropdown">
-                                        <a href="#" class="btn px-0 ml-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a href="" class="btn px-0 ml-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-bell text-primary"></i>
-                                            <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px; position: relative; background-color: red; color: white; font-size: 12px; font-weight: bold; border-radius: 50%;">
+                                            <span id="notification-count" class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px; position: relative; background-color: red; color: white; font-size: 12px; font-weight: bold; border-radius: 50%;">
                                                 @auth
-                                                    {{ auth()->user()->unreadNotifications->count() ?? 0 }}
+                                                    @if (auth()->user()->status == 1)
+                                                        0
+                                                    @else
+                                                        {{ auth()->user()->unreadNotifications->count() ?? 0 }}
+                                                    @endif
                                                 @else
                                                     0
                                                 @endauth
@@ -148,18 +152,21 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                             @auth
-                                                @if (auth()->user()->unreadNotifications->count() > 0)
+                                                @if (auth()->user()->status == 1)
+                                                    <a class="dropdown-item" href="">No Notification</a>
+                                                @elseif (auth()->user()->unreadNotifications->count() > 0)
                                                     @foreach (auth()->user()->unreadNotifications as $notification)
-                                                        <a class="dropdown-item" href="#">{{ $notification->data['title'] }}</a>
+                                                        <a class="dropdown-item" href="">{{ $notification->data['message'] }}</a>
                                                     @endforeach
                                                 @else
-                                                    <a class="dropdown-item" href="#">No Notification</a>
+                                                    <a class="dropdown-item" href="">No Notification</a>
                                                 @endif
                                             @else
-                                                <a class="dropdown-item" href="#">No Notification</a>
+                                                <a class="dropdown-item" href="">No Notification</a>
                                             @endauth
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                             

@@ -92,5 +92,6 @@
 <!-- Template Javascript -->
 <script src={{ asset("assetEndUser/js/main.js") }}></script>
 
+
 @include('sweetalert::alert')
 @stack('js')

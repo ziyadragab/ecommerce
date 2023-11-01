@@ -17,7 +17,6 @@ class RegisterRepository implements RegisterInterface{
     User::create($data);
     toast('User Created Successfully', 'success');
     return redirect()->route("endUser.loginForm");
-
   }
 }
 

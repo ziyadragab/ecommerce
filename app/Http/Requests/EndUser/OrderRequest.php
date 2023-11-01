@@ -30,7 +30,8 @@ class OrderRequest extends FormRequest
             'address_two'=>['string','max:255'],
             'country'=>['required','string','max:255'],
             'city'=>['required','string','max:255'],
-    
+            'zip_code'=>['required','integer']
+
 
         ];
     }

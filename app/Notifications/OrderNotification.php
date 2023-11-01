@@ -3,22 +3,22 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Console\View\Components\Component;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class OrderStatusChangedNotification extends Notification
+class OrderNotification extends Notification
 {
     use Queueable;
-
-    private $order;
 
     /**
      * Create a new notification instance.
      */
+    private $order;
     public function __construct($order)
     {
-        $this->order = $order;
+        $this->order=$order;
     }
 
     /**
@@ -31,10 +31,20 @@ class OrderStatusChangedNotification extends Notification
         return ['database'];
     }
 
+    /**
+     * Get the mail representation of the notification.
+     */
+
+
+    /**
+     * Get the array representation of the notification.
+     *
+     * @return array<string, mixed>
+     */
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => 'The status of your order has been changed And We Will Call You.' ,
+            'message' => 'A new order has been created.',
             'order_id' => $this->order->id,
         ];
     }

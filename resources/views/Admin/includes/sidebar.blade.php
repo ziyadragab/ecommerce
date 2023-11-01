@@ -461,7 +461,7 @@
                     <li>
                         <a href="{{ route('admin.setting.index') }}"> Setting </a>
                     </li>
-                    
+
                 </ul>
             </li>
 

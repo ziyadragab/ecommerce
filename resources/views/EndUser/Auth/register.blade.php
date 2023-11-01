@@ -39,11 +39,11 @@
             </div>
             <div class="col-md-6">
 
-              <form class="mb-5" action="{{route('endUser.register')}}" method="post" id="contactForm" name="contactForm">
+              <form class="mb-5" action="{{route('endUser.register')}}" method="post" id="contactForm"  name="contactForm">
                 @csrf
                   <div class="row">
                   <div class="col-md-12 form-group">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                    <input type="text" class="form-control" value="{{old('name')}}" name="name" id="name" placeholder="Your name">
                   </div>
                     @error('name')
                     <p class="text-danger">{{$message}}</p>
@@ -51,13 +51,13 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12 form-group">
-                    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                    <input type="text" class="form-control" value="{{old('email')}}" name="email" id="email" placeholder="Email">
                   </div>
                     @error('email')
                     <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
-               
+
                   <div class="row">
                       <div class="col-md-12 form-group">
                           <input type="password" class="form-control" name="password" id="subject" placeholder="password">
